@@ -1,5 +1,5 @@
 from storage import Storage
-import commands
+from commands import Commands
 
 
 def main():
@@ -8,6 +8,7 @@ def main():
     storage.load()
     while True:
         input_data = input("Write command: ")
+        commands = Commands()
         result = commands.execute_command(storage, input_data)
         print(result, '\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
