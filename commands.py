@@ -25,14 +25,21 @@ class Commands:
         except KeyError:
             return 'Error with input data'
 
-    def add_pair(self, storage, key, value):
+    @staticmethod
+    def add_pair(*args):
+        storage = args[0]
+        key = args[1]
+        value = args[2]
         try:
             storage.add(key, value)
             return f"Pair {key}:{value} was added"
         except Exception as e:
             return e
 
-    def delete_pair(self, storage, key, arg=None):
+    @staticmethod
+    def delete_pair(*args):
+        storage = args[0]
+        key = args[1]
         try:
             value = storage.data[key]
             storage.delete(key)
@@ -40,34 +47,42 @@ class Commands:
         except KeyError:
             return 'Key not found'
 
-    def get_value(self, storage, key, arg=None):
+    @staticmethod
+    def get_value(*args):
+        storage = args[0]
+        key = args[1]
         try:
             return storage.get(key)
         except KeyError:
             return 'Key not found'
 
-    def save_storage(self, storage, arg1=None, arg2=None):
+    @staticmethod
+    def save_storage(*args):
+        storage = args[0]
         try:
             storage.save()
             return "State was saved"
         except Exception as e:
             return e
 
-    def change_storage(self, storage, name, arg=None):
+    @staticmethod
+    def change_storage(*args):
+        storage = args[0]
+        name = args[1]
         try:
             storage.change_storage(name)
             return f'Storage {name} selected'
         except Exception as e:
             return e
 
-    def get_all_data(self, storage, arg1=None, arg2=None):
+    @staticmethod
+    def get_all_data(*args):
+        storage = args[0]
         return storage.data
 
-    def close_app(self, storage=None, arg1=None, arg2=None):
-        print('Good bye')
-        exit(0)
-
-    def clone_storage(self, storage, arg1=None, arg2=None):
+    @staticmethod
+    def clone_storage(*args):
+        storage = args[0]
         try:
             new_name = storage.name + '-clone'
             new_storage = Storage(new_name)
@@ -76,3 +91,8 @@ class Commands:
             return f"Clone {new_name} was created"
         except Exception as e:
             return e
+
+    @staticmethod
+    def close_app(*args):
+        print('Good bye')
+        exit(0)
