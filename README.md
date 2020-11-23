@@ -5,7 +5,7 @@ kv_storage для типа данных string
 # Запуск:
 python main.py 
 
-# Rоманды:
+# Команды:
 
 add key value
 
